@@ -1,30 +1,37 @@
-# Используем официальный образ PHP с поддержкой CLI
-FROM php:8.0-cli
+# Используем официальный образ PHP с Apache
+FROM php:8.0-apache
 
-# Устанавливаем необходимые пакеты для работы с PHP и Composer
+# Устанавливаем необходимые зависимости для работы с MySQL, Composer и другими расширениями PHP
 RUN apt-get update && apt-get install -y \
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    curl \
     git \
     unzip \
-    && rm -rf /var/lib/apt/lists/*
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install gd mysqli pdo pdo_mysql
 
-# Устанавливаем Composer
+# Устанавливаем Composer для управления зависимостями
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Создаем рабочую директорию для вашего проекта
+# Включаем модуль Apache для перезапуска
+RUN a2enmod rewrite
+
+# Устанавливаем рабочую директорию для проекта
 WORKDIR /var/www/html
 
-# Копируем файлы composer.json и composer.lock в контейнер
-COPY composer.json /var/www/html/
-COPY composer.lock /var/www/html/
+# Копируем все файлы вашего проекта в контейнер
+COPY . .
 
-# Устанавливаем все зависимости, указанные в composer.json
+# Устанавливаем зависимости проекта с помощью Composer (в том числе PHPMailer)
 RUN composer install
 
-# Копируем все остальные файлы проекта в контейнер
-COPY . /var/www/html/
+# Устанавливаем права доступа на файлы
+RUN chown -R www-data:www-data /var/www/html
 
-# Открываем порт 80 для вашего приложения
+# Открываем порт 80 для Apache
 EXPOSE 80
 
-# Запуск встроенного PHP-сервера (если необходимо для вашего проекта)
-CMD ["php", "-S", "0.0.0.0:80", "index.php"]
+# Запускаем Apache
+CMD ["apache2-foreground"]
