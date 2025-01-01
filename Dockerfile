@@ -24,7 +24,10 @@ WORKDIR /var/www/html
 # Копируем все файлы вашего проекта в контейнер
 COPY . .
 
-# Устанавливаем зависимости проекта с помощью Composer (в том числе PHPMailer)
+# Устанавливаем PHPMailer с помощью Composer
+RUN composer require phpmailer/phpmailer
+
+# Устанавливаем все остальные зависимости проекта с помощью Composer
 RUN composer install
 
 # Устанавливаем права доступа на файлы
