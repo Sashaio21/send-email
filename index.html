@@ -59,6 +59,7 @@
                     if (responce.status == 200){
                         btnSend.innerHTML = "Отправлено";
                         btnSend.classList.add('btn-inactive');
+                        btnSend.classList.remove('btn-active');
                         btnSend.setAttribute('type', 'button');
                         console.log(btnSend);
                         document.getElementById("message-succes-send").innerHTML = "Ваша заявка успешно отправлена и находится в обработке. Ожидайте email с подтверждением бронирования.";
@@ -108,9 +109,9 @@
                         Отправляя заявку, вы соглашаетесь с договором публичной оферты и политикой обработки данных
                     </p>
                 </div>
-                <button type="submit" id="button-send" class="button-send">Отправить</button>
+                <button type="submit" id="button-send" class="button-send btn-active">Отправить</button>
             </div>
-            <span id="message-succes-send" class="success-message"></span>
+            <h5 id="message-succes-send" class="success-message"></h5>
             </div>
         </div>
     </form>
