@@ -1,9 +1,10 @@
 * {
+    /* outline: 1px solid green; */
     font-family: 'Roboto', Arial, sans-serif;
 }
 h1 {
     margin: 0px;
-    font-size: 45px;
+    font-size: 40px;
     color: #474947;
 }
 
@@ -63,8 +64,12 @@ button {
     margin-left: 10px;
     border-radius: 5px;
     font-size: 15px;
-    border: 1px solid #323730;
+    border: 0px solid #323730;
     background-color: #efb24a;
+}
+
+.btn-active:hover {
+    animation: btn-anim 1s forwards;
 }
 
 .button-send:hover {
@@ -73,8 +78,7 @@ button {
     margin-left: 10px;
     border-radius: 5px;
     font-size: 15px;
-    border: 1px solid #323730;
-    animation: btn-anim 1s forwards;
+    border: 0px solid #323730;
 }
 
 @keyframes btn-anim {
@@ -89,7 +93,7 @@ button {
 
 .btn-inactive{
     background-color: #dfdad1;
-    border: 1px solid #d5d5d5;
+    border: 0px solid #d5d5d5;
 }
 
 .error-message {
@@ -101,7 +105,8 @@ button {
     text-align: center;
     font-size: 18px;
     justify-content: center;
-    color: rgb(26, 175, 34);
+    color: #474947;
+    margin-top: 15px;
 }
 
 
@@ -121,7 +126,7 @@ button {
 .maincontainer {
     position: absolute;
     transform: translate(50%, 10%);
-    padding: 3%;
+    padding: 4%;
     display: flex;
     flex-direction: column;
     width: 50%;
