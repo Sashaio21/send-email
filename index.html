@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Адаптивная верстка с Bootstrap</title>
-    <!-- Подключение Bootstrap -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script>
@@ -26,7 +25,6 @@
             for (var i = 0; i < errorMessages.length; i++) {
                 errorMessages[i].innerText = '';
             }
-            console.log(emailPattern.test(emailEl.value))
             if (nameEl.value == "") {
                 errors+=1
                 document.getElementById("name-error").innerHTML = "Введите имя"
@@ -37,26 +35,28 @@
                 emailEl.classList.add('invalid-validation');
                 document.getElementById("email-error").innerHTML = "Введите email"
             } 
-            if (!emailPattern.test(emailEl.value)){
+            if (!emailPattern.test(emailEl.value.replace(' ', ''))){
                 errors+=1
                 emailEl.classList.add('invalid-validation');
                 document.getElementById("email-error").innerHTML = "Введите корректный email, например: example@mail.com или example@mail.ru"
             }
-
+            const btnSend = document.getElementById("button-send");
+            const main_div = document.getElementById("maincontainer");
             
 
             if (errors == 0) {
+                main_div.classList.add('anim-loaded');
+                btnSend.innerHTML = "Отправка...";
                 fetch('send.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: `name-user=${nameEl.value}&email=${emailEl.value}&choise-seminar=${seminarEl.value}`
+                body: `name-user=${nameEl.value}&email=${emailEl.value.replace(' ', '')}&choise-seminar=${seminarEl.value}`
                 }).then(responce => {
                     responce.json()
                     console.log(responce.status)
                     if (responce.status == 200){
-                        const btnSend = document.getElementById("button-send")
                         btnSend.innerHTML = "Отправлено";
                         btnSend.classList.add('btn-inactive');
                         btnSend.setAttribute('type', 'button');
@@ -65,14 +65,16 @@
                     }
                 }).catch(error=>{
                     console.log(error)
-                })
+                }).finally(()=>{
+                    main_div.classList.remove('anim-loaded');
+                });
             } 
         }
     </script>
 </head>
 <body>
     <form id="form" method="post" action="send.php" onsubmit="validate(event)">
-        <div class="maincontainer">
+        <div id="maincontainer" class="maincontainer">
             <h1 class="margin-bottom-element info-text">Отправить заявку на участие в семинаре</h1>
             <div class="margin-bottom-element">
                 <p class="info-text">Организаторы свяжутся с вами для подтверждения записи.</p>
