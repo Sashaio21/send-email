@@ -1,10 +1,13 @@
 * {
-    /* outline: 1px solid green; */
-    font-family: 'Roboto';
+    font-family: 'Roboto', Arial, sans-serif;
 }
 h1 {
     margin: 0px;
     font-size: 45px;
+    color: #474947;
+}
+
+input{
     color: #474947;
 }
 p {
@@ -33,7 +36,7 @@ button {
 .input-element {
     width: 100%;
     font-size: 15px;
-    padding: 10px;
+    padding: 15px;
     border-radius: 5px;
     background-color: #98c8ce47;
 }
@@ -64,8 +67,29 @@ button {
     background-color: #efb24a;
 }
 
+.button-send:hover {
+    padding: 2% 5% 2% 5%;
+    align-self: center;
+    margin-left: 10px;
+    border-radius: 5px;
+    font-size: 15px;
+    border: 1px solid #323730;
+    animation: btn-anim 1s forwards;
+}
+
+@keyframes btn-anim {
+    0% {
+        background-color: #efb24a;
+    }
+    100% {
+        background-color: #b37f25;
+    }
+}
+
+
 .btn-inactive{
-    background-color: #dfdad1;;
+    background-color: #dfdad1;
+    border: 1px solid #d5d5d5;
 }
 
 .error-message {
@@ -75,7 +99,7 @@ button {
 
 .success-message {
     text-align: center;
-    font-size: 15px;
+    font-size: 18px;
     justify-content: center;
     color: rgb(26, 175, 34);
 }
@@ -96,21 +120,46 @@ button {
 
 .maincontainer {
     position: absolute;
-    transform: translate(45%, 0%); /* Сдвиг на половину ширины и высоты */
+    transform: translate(50%, 10%);
     padding: 3%;
     display: flex;
     flex-direction: column;
-    width: 55%;
+    width: 50%;
     border-radius: 9px;
-    background-color: #f4f4f4;
+    background-color: #fdfdfd;
     justify-content: space-around;
-    box-shadow: 2px 2px 20px #67676744;
+    box-shadow: 0px 0px 20px #67676744;
+}
+
+.anim-loaded {
+    animation: pulse-opacity 2s infinite;
+}
+
+@keyframes pulse-opacity {
+    0% {
+        opacity: 0.8;
+    }
+    50% {
+        opacity: 0.4;
+    }
+    100% {
+        opacity: 0.8;
+    }
 }
 
 
 @media (max-width: 918px) {
+    .maincontainer {
+        width: 55%;
+        transform: translate(45%, 10%); /* Сдвиг на половину ширины и высоты */
+    }
+
     p {
         margin: 0px;
+        font-size: 12px;
+    }
+
+    .success-message {
         font-size: 12px;
     }
     
@@ -128,13 +177,18 @@ button {
 
     .input-element {
         font-size: 10px;
-        padding: 5px;
+        padding: 10px;
     }
 }
 
 @media (max-width: 707px) {
     h1 {
         font-size: 20px;
+    }
+
+    .maincontainer {
+        width: 70%;
+        transform: translate(25%, 10%); /* Сдвиг на половину ширины и высоты */
     }
 
     .error-message {
@@ -156,9 +210,17 @@ button {
 }
 
 @media (max-width: 471px) {
-    p {
+  
+    .maincontainer {
+        width: 80%;
+        transform: translate(15%, 10%); /* Сдвиг на половину ширины и высоты */
+    }
+
+    /* p {
         font-size: 9px;
     }
+
+
     .info-text-row{
         flex-direction: column;
     }
@@ -180,7 +242,7 @@ button {
 
     .button-send {
         margin-top: 4px;
-    }
+    } */
 }
 
 @media (max-width: 341px) {
@@ -189,11 +251,11 @@ button {
     }
 
     p {
-        font-size: 7px;
+        font-size: 9px;
     }
 
     .button-send {
-        font-size: 7px;
+        font-size: 10px;
     }
 
     .input-element {
@@ -203,13 +265,13 @@ button {
 
 
     .error-message {
-        font-size: 7px;
+        font-size: 9px;
     }
     .success-message {
-        font-size: 7px;
+        font-size: 9px;
     }
 
     .button-send {
-        margin-top: 4px;
+        margin-top: 2px;
     }
 }
