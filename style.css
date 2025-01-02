@@ -78,7 +78,6 @@ button {
     margin-left: 10px;
     border-radius: 5px;
     font-size: 15px;
-    border: 0px solid #323730;
 }
 
 @keyframes btn-anim {
@@ -93,7 +92,6 @@ button {
 
 .btn-inactive{
     background-color: #dfdad1;
-    border: 0px solid #d5d5d5;
 }
 
 .error-message {
@@ -254,6 +252,7 @@ button {
     h1 {
         font-size: 15px;
     }
+
 
     p {
         font-size: 9px;
