@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Тестовое задание</title>
+    <title>Адаптивная верстка с Bootstrap</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script>
@@ -102,7 +102,7 @@
             </div>
             <div class="info-text-row margin-bottom-element">
                 <div class="info-text-col">
-                    <p class="info-text">
+                    <p class="info-text" style="margin-bottom: 5px;">
                         Все поля обязательны для заполнения
                     </p>
                     <p class="info-text">
