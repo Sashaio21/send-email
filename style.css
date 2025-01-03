@@ -1,5 +1,4 @@
 * {
-    /* outline: 1px solid green; */
     font-family: 'Roboto', Arial, sans-serif;
 }
 h1 {
@@ -215,7 +214,7 @@ option {
   
     .maincontainer {
         width: 80%;
-        transform: translate(15%, 10%); /* Сдвиг на половину ширины и высоты */
+        transform: translate(15%, 10%);
     }
 
     /* p {
@@ -256,8 +255,6 @@ option {
     p {
         font-size: 9px;
     }
-
-
 
 
     .error-message {
