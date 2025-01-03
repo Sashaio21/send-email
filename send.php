@@ -11,7 +11,6 @@ use PHPMailer\PHPMailer\Exception;
 
 $mail = new PHPMailer(true);
 
-// Логируем начало выполнения
 error_log("Запуск скрипта отправки письма: " . date("Y-m-d H:i:s"));
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -19,7 +18,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = htmlspecialchars($_POST['email']);
     $seminar = htmlspecialchars($_POST["choise-seminar"]);
 
-    // Логируем входные данные
     error_log("Полученные данные: имя - $name, email - $email, семинар - $seminar");
 
     try {
@@ -32,15 +30,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
-        // Логируем настройки SMTP
+       
         error_log("Настройки SMTP: сервер - smtp.gmail.com, порт - 587");
 
         $mail->setFrom('saschakowal1233@gmail.com', 'Sascha Kowal');
         $mail->addAddress($email, $name);
 
         // Настройки письма
-        $mail->isHTML(true); // Формат письма - HTML
-        $mail->Subject = 'Приглашение на участие в семинаре'; // Тема письма
+        $mail->isHTML(true); 
+        $mail->Subject = 'Приглашение на участие в семинаре';
         $mail->Body = sprintf('
             <!DOCTYPE html>
             <html lang="ru">
@@ -89,29 +87,27 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </div>
             </body>
             </html>
-        ', $name, $seminar); // Тело письма в HTML
+        ', $name, $seminar);
 
-        // Логируем попытку отправки письма
+
         error_log("Попытка отправки письма на адрес $email");
 
         $mail->send();
 
-        // Логируем успешную отправку
+        
         error_log("Письмо успешно отправлено на $email");
 
-        // Ответ для пользователя
+       
         $response = array("status" => "Письмо отправлено");
 
         // Отправка JSON-ответа
         echo json_encode($response);
 
     } catch (Exception $err) {
-        // Логируем ошибку
         error_log("Ошибка при отправке письма: " . $mail->ErrorInfo);
         echo "Ошибка при отправке письма: " . $err->getMessage();
     }
 
-    // Логируем завершение выполнения
     error_log("Завершение работы скрипта: " . date("Y-m-d H:i:s"));
 }
 
