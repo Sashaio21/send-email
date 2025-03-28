@@ -4,7 +4,7 @@
 
 ## Ссылка на проект
 
-Проект доступен по следующей ссылке: <a href="[https://penalty-factor-client.vercel.app/](https://send-email-e3kf.onrender.com/)" target="_blank">Ссылка на проект</a>."
+Проект доступен по следующей ссылке: <a href="https://send-email-e3kf.onrender.com/" target="_blank">Ссылка на проект</a>."
 ## Для чего создавался проект
 
 Проект был разработан в рамках курсовой работы.
